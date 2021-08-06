@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Transaction = require("../models");
+const Workout = require("../models");
 
 // Get all workouts
 router.get("api/workouts", (req, res) => {
@@ -11,3 +11,5 @@ router.get("api/workouts", (req, res) => {
         res.status(400).json(err);
     });
 });
+
+module.exports = router;
