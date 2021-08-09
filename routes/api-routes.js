@@ -39,7 +39,7 @@ router.put('/api/workout/:id', (req, res) => {
     });
 });
 
-//GET workouts with aggregate/setting new field called totalDuration
+//Establishing aggregate to set new field called
 router.get("/api/workouts", (req, res) => {
     db.Workout.aggregate([{
         //Adding the total duration
@@ -53,5 +53,20 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
+//Using aggregate to GET the range of the last seven days
+router.get("/api/workouts/range", (req, res) => {
+    db.Workout.aggregate([
+        {$addFields: {totalDuration: {$sum: "$exercises.duration"}}},
+        //Sorting in descending order to start with most recent day
+        {$sort: {"day": -1}},
+        {$limit: (7)}
+    ])
+    .then(dbWorkout => {
+        res.json(dbWorkout)
+    })
+    .catch(err => {
+        res.status(400).json(err);
+    });
+});
 
 module.exports = router;
