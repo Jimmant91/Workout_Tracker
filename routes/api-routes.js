@@ -12,12 +12,25 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
-//Route for stats page
-
 
 //Enter new workout
 router.post("/api/workouts", ({ body }, res) => {
     db.Workout.create(body)
+    .then(dbWorkout => {
+        res.json(dbWorkout);
+    })
+    .catch(err => {
+        res.status(400).json(err);
+    });
+});
+
+//Continue(update) workout
+router.put('/api/workout/:id', (req, res) => {
+    db.Workout.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $push: { exercises: req.body } },
+        { new: true, runValidators: true }
+    )
     .then(dbWorkout => {
         res.json(dbWorkout);
     })
