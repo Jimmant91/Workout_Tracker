@@ -2,15 +2,15 @@ const router = require("express").Router();
 const db = require("../models");
 
 // Get all workouts
-router.get("/api/workouts", (req, res) => {
-    db.Workout.find({})
-    .then(dbWorkout => {
-        res.json(dbWorkout)
-    })
-    .catch(err => {
-        res.status(400).json(err);
-    });
-});
+// router.get("/api/workouts", (req, res) => {
+//     db.Workout.find({})
+//     .then(dbWorkout => {
+//         res.json(dbWorkout)
+//     })
+//     .catch(err => {
+//         res.status(400).json(err);
+//     });
+// });
 
 
 //Enter new workout
@@ -25,9 +25,9 @@ router.post("/api/workouts", ({ body }, res) => {
 });
 
 //Continue(update) workout
-router.put('/api/workout/:id', (req, res) => {
+router.put('/api/workouts/:id', (req, res) => {
     db.Workout.findByIdAndUpdate(
-        { _id: req.params.id },
+        ( req.params.id ),
         { $push: { exercises: req.body } },
         { new: true, runValidators: true }
     )
