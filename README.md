@@ -7,10 +7,10 @@
   <a href="https://obscure-spire-84126.herokuapp.com/?id=6111f1c1bbdf67001553b746">Heroku Link</a>
 
 
-  ![workout page](assets\workout.png)
+  ![workout page](assets/workout.png)
 
 
-  ![stats page](assets\stats.png)
+  ![stats page](assets/stats.png)
 
   ## Questions
   If you have any questions about the repo, open an issue or contact me directly at [jimmy.antley@gmail.com](mailto:jimmy.antley@gmail.com). You can find more of my work at [Jimmant91](https://www.github.com/Jimmant91).
